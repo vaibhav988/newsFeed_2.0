@@ -16,25 +16,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    lateinit var binding: ActivityMainBinding    //creating viewbinding varible to bind with the corresponding layout file
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
-
-
-
         val listArticles : ArrayList<Articles> = ArrayList()  // for storing the data fetched from API
         val newsListAdapter  = NewsListAdapter(applicationContext) // ListAdapter
 
-
         binding.recycler.layoutManager = LinearLayoutManager(this)
 
-        binding.recycler.adapter = newsListAdapter
+        binding.recycler.adapter = newsListAdapter // setting up the adapter
 
         val newsServiceInstance = Retrofit.Builder().baseUrl(API.baseUrl)
             .addConverterFactory(GsonConverterFactory.create()).build().create(newsService::class.java)

@@ -28,14 +28,14 @@ class MainActivity : AppCompatActivity() {
 
          newsRecyclerView.adapter = newsListAdapter
 
-        val newsServiceInstance = Retrofit.Builder().baseUrl(API.BASE_URL)
+        val newsServiceInstance = Retrofit.Builder().baseUrl(API.baseUrl)
             .addConverterFactory(GsonConverterFactory.create()).build().create(newsService::class.java)
                   // service to interact with the API call
 
 
         // coroutines under lifeCycleScope
         lifecycleScope.launch {
-            val newsModel: Response<Model> = newsServiceInstance.getNews("in" , API.API_KEY)
+            val newsModel: Response<Model> = newsServiceInstance.getNews("in" , API.apiKey)
             try {
 
                 for (article in newsModel.body()?.articles!!) {

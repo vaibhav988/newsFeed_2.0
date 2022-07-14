@@ -16,7 +16,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding    //creating viewbinding varible to bind with the corresponding layout file
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -25,8 +27,7 @@ class MainActivity : AppCompatActivity() {
         val listArticles : ArrayList<Articles> = ArrayList()  // for storing the data fetched from API
         val newsListAdapter  = NewsListAdapter(applicationContext) // ListAdapter
 
-        binding.recycler.layoutManager = LinearLayoutManager(this)
-
+        binding.recycler.layoutManager = LinearLayoutManager(this) // applying linearlayout to recyclerview
         binding.recycler.adapter = newsListAdapter // setting up the adapter
 
         val newsServiceInstance = Retrofit.Builder().baseUrl(API.baseUrl)
@@ -38,23 +39,15 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val newsModel: Response<Model> = newsServiceInstance.getNews("in" , API.apiKey)
             try {
-
-                for (article in newsModel.body()?.articles!!) {
-
+                for (article in newsModel.body()?.articles!!) { // checking if articles list is null or not
                     listArticles.add(article)
-
                 }
-
             }
-            catch (e : NullPointerException)
+            catch (e : NullPointerException)  // catching the exception if  articles list is null
             {
                 Log.d("Exception" , e.message.toString())
             }
-
             newsListAdapter.submitList(listArticles)
-
         }
-
     }
-
 }

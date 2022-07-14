@@ -3,23 +3,20 @@ package com.example.kotlin_listadapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import com.example.kotlin_listadapter.databinding.ActivityNewsDetailsBinding
 import com.example.kotlin_listadapter.news.Articles
 
 class NewsDetailActivity : AppCompatActivity() {
+    lateinit var binding: ActivityNewsDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_news_details)
-
-        val newsTitle : TextView = findViewById(R.id.title)
-        val newsDescription : TextView  = findViewById(R.id.desc)
-
-        val newsDate : TextView = findViewById(R.id.date)
-
+        binding = ActivityNewsDetailsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val article: Articles = intent.getSerializableExtra("article") as Articles
 
-        newsTitle.setText(article.title)
-        newsDescription.setText(article.description)
-        newsDate.setText(article.publishedAt)
+        binding.title.setText(article.title)
+        binding.desc.setText(article.description)
+        binding.date.setText(article.publishedAt)
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kotlin_listadapter.databinding.ActivityMainBinding
 import com.example.kotlin_listadapter.news.Articles
 import com.example.kotlin_listadapter.news.Model
 import kotlinx.coroutines.launch
@@ -15,18 +16,25 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val newsRecyclerView  = findViewById<RecyclerView>(R.id.recycler)
-        newsRecyclerView.layoutManager = LinearLayoutManager(this)
+
+
+
+
+
 
         val listArticles : ArrayList<Articles> = ArrayList()  // for storing the data fetched from API
         val newsListAdapter  = NewsListAdapter(applicationContext) // ListAdapter
 
-         newsRecyclerView.adapter = newsListAdapter
+
+        binding.recycler.layoutManager = LinearLayoutManager(this)
+
+        binding.recycler.adapter = newsListAdapter
 
         val newsServiceInstance = Retrofit.Builder().baseUrl(API.baseUrl)
             .addConverterFactory(GsonConverterFactory.create()).build().create(newsService::class.java)

@@ -18,7 +18,8 @@ android {
     android {
         viewBinding {
             enabled = true
-        }}
+        }
+    }
 
     buildTypes {
         release {

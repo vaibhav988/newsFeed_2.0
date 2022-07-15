@@ -1,4 +1,4 @@
-package com.example.kotlin_listadapter;
+package com.example.kotlin_listadapter.repository;
 
 public class API {
      static final String apiKey = "6afd7b911285435a8ef60acffa8af13c";

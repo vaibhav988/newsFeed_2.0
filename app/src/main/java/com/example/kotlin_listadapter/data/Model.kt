@@ -1,6 +1,5 @@
-package com.example.kotlin_listadapter.news
+package com.example.kotlin_listadapter.data
 
-import com.example.kotlin_listadapter.news.Articles
 import com.google.gson.annotations.SerializedName
 import java.util.*
 

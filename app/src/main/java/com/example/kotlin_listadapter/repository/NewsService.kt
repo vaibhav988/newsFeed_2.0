@@ -1,6 +1,6 @@
 package com.example.kotlin_listadapter
 
-import com.example.kotlin_listadapter.news.Model
+import com.example.kotlin_listadapter.data.Model
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

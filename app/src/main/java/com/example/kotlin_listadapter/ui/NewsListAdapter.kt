@@ -3,21 +3,21 @@ package com.example.kotlin_listadapter
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kotlin_listadapter.news.Articles
+import com.example.kotlin_listadapter.databinding.NewsItemBinding
+import com.example.kotlin_listadapter.data.Articles
+import com.example.kotlin_listadapter.ui.NewsDetailActivity
 
 class NewsListAdapter(val context: Context) : ListAdapter<Articles, NewsListAdapter.ItemViewholder>(DiffCallback()) {
 
-
+      lateinit var binding : NewsItemBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
 
-        val view : View  = LayoutInflater.from(parent.context).inflate(R.layout.news_item , parent , false)
-        return  ItemViewholder(view)
+        binding  =  NewsItemBinding.inflate(LayoutInflater.from(context) , parent , false )
+        return  ItemViewholder(binding)
 
     }
 
@@ -27,27 +27,21 @@ class NewsListAdapter(val context: Context) : ListAdapter<Articles, NewsListAdap
             {
 
                 val intent = Intent( context ,  NewsDetailActivity::class.java)
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.putExtra("article" ,getItem(position))
-
                 context.startActivity(intent)
 
             }
         )
     }
 
-    class ItemViewholder(view : View) : RecyclerView.ViewHolder(view) {
-
-         val textTitle = view.findViewById<TextView>(R.id.newsTitle)
+    class ItemViewholder(val binding: NewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
          fun bind(item: Articles){
-
-               textTitle.setText(item.title)
-
+             binding.newsTitle.text = item.title
          }
 
     }
-
 
 }
 

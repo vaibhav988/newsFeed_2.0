@@ -1,4 +1,4 @@
-package com.example.kotlin_listadapter.news
+package com.example.kotlin_listadapter.data
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

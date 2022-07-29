@@ -20,6 +20,7 @@ class NewsListAdapter(private val context: Context) :
         binding = NewsItemBinding.inflate(LayoutInflater.from(context), parent, false)
         return ItemViewHolder(binding)
 
+
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {

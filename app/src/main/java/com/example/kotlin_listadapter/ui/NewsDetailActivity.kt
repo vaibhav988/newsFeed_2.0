@@ -17,10 +17,7 @@ class NewsDetailActivity : AppCompatActivity() {
         binding = ActivityNewsDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-         article = intent.getSerializableExtra("article") as Articles
-
-        binding.title.setText(article.title)
-        binding.desc.setText(article.description)
-        binding.date.setText(article.publishedAt)
+        article = intent.getSerializableExtra("article") as Articles
+        binding.article = article
     }
 }

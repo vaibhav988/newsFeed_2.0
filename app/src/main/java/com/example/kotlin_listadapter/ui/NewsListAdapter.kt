@@ -11,35 +11,35 @@ import com.example.kotlin_listadapter.databinding.NewsItemBinding
 import com.example.kotlin_listadapter.data.Articles
 import com.example.kotlin_listadapter.ui.NewsDetailActivity
 
-class NewsListAdapter(val context: Context) : ListAdapter<Articles, NewsListAdapter.ItemViewholder>(DiffCallback()) {
+class NewsListAdapter(private val context: Context) :
+    ListAdapter<Articles, NewsListAdapter.ItemViewHolder>(DiffCallback()) {
 
-      lateinit var binding : NewsItemBinding
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewholder {
+    private lateinit var binding: NewsItemBinding
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
-        binding  =  NewsItemBinding.inflate(LayoutInflater.from(context) , parent , false )
-        return  ItemViewholder(binding)
+        binding = NewsItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        return ItemViewHolder(binding)
 
     }
 
-    override fun onBindViewHolder(holder: ItemViewholder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.bind(getItem(position))
-        holder.itemView.setOnClickListener(
-            {
+        holder.itemView.setOnClickListener {
 
-                val intent = Intent( context ,  NewsDetailActivity::class.java)
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.putExtra("article" ,getItem(position))
-                context.startActivity(intent)
+            val intent = Intent(context, NewsDetailActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.putExtra("article", getItem(position))
+            context.startActivity(intent)
 
-            }
-        )
+        }
     }
 
-    class ItemViewholder(val binding: NewsItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ItemViewHolder(private val binding: NewsItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-         fun bind(item: Articles){
-             binding.newsTitle.text = item.title
-         }
+        fun bind(item: Articles) {
+            binding.article = item
+        }
 
     }
 

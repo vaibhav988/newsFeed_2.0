@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+<layout>
 
-    tools:context=".ui.NewsDetailActivity">
+    <data>
 
-    <TextView
+        <variable
+            name="article"
+            type="com.example.kotlin_listadapter.data.Articles" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:id="@+id/title"
-        android:text="@string/title"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/desc"
-        android:text="@string/desc"
-        android:textSize="15dp"
-        android:layout_margin="10dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/date"
-        android:textSize="10dp"
-        android:layout_margin="10dp"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        tools:context=".ui.NewsDetailActivity">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@{article.title.toString()}"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@{article.description.toString()}"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@{article.publishedAt.toString()}"
+            android:textSize="10dp" />
 
 
+    </LinearLayout>
 
-
-
-</LinearLayout>
+</layout>
